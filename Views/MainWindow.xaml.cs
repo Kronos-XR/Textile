@@ -25,7 +25,7 @@ namespace Textile
         {
             InitializeComponent();
 
-            ApiService.GetdataFromApi();
+            ApiService.GetDataProductsFromApi();
 
         }
     }

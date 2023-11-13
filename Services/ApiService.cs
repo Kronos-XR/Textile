@@ -11,50 +11,40 @@ namespace Textile.Services
 {
     internal class ApiService
     {
-        public static void GetdataFromApi()
+        public static async void GetDataProductsFromApi()
         {
-            string apiUrl = "http://www.diplomapi.somee.com/api/products";
+            int productId = 1;
+            //string apiUrl = "http://www.diplomapi.somee.com/api/products";
+            string apiUrl = $"http://www.diplomapi.somee.com/api/products/{productId}";
 
-            WebRequest request = WebRequest.Create(apiUrl);
 
-            try
+            using (HttpClient client = new HttpClient())
             {
-                using(WebResponse responce = request.GetResponse())
-                using(Stream dataStream = responce.GetResponseStream())
-                using(StreamReader reader = new StreamReader(dataStream))
+
+                try
                 {
-                    string responseFromServer = reader.ReadToEnd();
-                    Console.WriteLine(responseFromServer);
+                    // Выполняем GET-запрос
+                    HttpResponseMessage response = await client.GetAsync(apiUrl);
+
+                    // Проверяем успешность запроса
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Читаем содержимое ответа
+                        string responseData = await response.Content.ReadAsStringAsync();
+
+                        // Обрабатываем данные
+                        Console.WriteLine(responseData);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Ошибка: {response.StatusCode} - {response.ReasonPhrase}");
+                    }
                 }
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Ошибка");
-                throw;
-            }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Произошла ошибка: {ex.Message}");
+                }
+            }           
         }
-        
-
-        /*
-        private readonly HttpClient _httpClient;
-
-        public  ApiService()
-        {
-            _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new Uri("http://www.diplomapi.somee.com/api/products");
-        }
-
-        public async Task<List<Product>> GetDataAsync()
-        {
-            var responce = await _httpClient.GetAsync("endpoint");
-            if (responce.IsSuccessStatusCode)
-            {
-                var content = await responce.Content.ReadAsStringAsync();
-                var data = JsonConverter.DeserializeObject<List<Product>>(content);
-                return data;
-            }
-            return null;
-        }
-        */
     }
 }
