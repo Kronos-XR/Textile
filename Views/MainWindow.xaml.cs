@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Textile.Services;
 
 namespace Textile
 {
@@ -23,6 +24,9 @@ namespace Textile
         public MainWindow()
         {
             InitializeComponent();
+
+            ApiService.GetdataFromApi();
+
         }
     }
 }
