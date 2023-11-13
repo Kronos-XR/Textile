@@ -18,14 +18,14 @@ namespace Textile.Services
 
             using (HttpClient client = new HttpClient())
             {
-                try
-                {
+            try
+            {
                     // Выполняем GET-запрос
                     HttpResponseMessage response = client.GetAsync(apiUrl).Result; // Блокируем выполнение до завершения асинхронной операции
 
                     // Проверяем успешность запроса
                     if (response.IsSuccessStatusCode)
-                    {
+                {
                         // Читаем содержимое ответа
                         string responseData = response.Content.ReadAsStringAsync().Result; // Блокируем выполнение до завершения асинхронной операции
 
@@ -38,10 +38,10 @@ namespace Textile.Services
                     else
                     {
                         Console.WriteLine($"Ошибка: {response.StatusCode} - {response.ReasonPhrase}");
-                    }
                 }
+            }
                 catch (Exception ex)
-                {
+            {
                     Console.WriteLine($"Произошла ошибка: {ex.Message}");
                 }
 
@@ -49,7 +49,7 @@ namespace Textile.Services
                 return null;
             }
         }
-
+        
         public static void GetProduct(int productId = 1)
         {
             Product product = GetDataProductFromApi(productId);
@@ -59,6 +59,8 @@ namespace Textile.Services
                 // Теперь у вас есть объект Product, и вы можете использовать его как вам нужно
                 Console.WriteLine($"Product ID: {product.Id}, Name: {product.ProductName}, Price: {product.Price}");
             }
+            return null;
         }
+        */
     }
 }
