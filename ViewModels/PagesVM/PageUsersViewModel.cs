@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Textile.ViewModels
 {
-    public class UsersPageViewModel : BaseViewModel
+    public class PageUsersViewModel : BaseViewModel
     {
     }
 }
