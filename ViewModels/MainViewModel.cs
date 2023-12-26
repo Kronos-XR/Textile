@@ -10,9 +10,12 @@ namespace Textile.ViewModels
         #region Constants
 
         public static readonly string Page1ViewModelAlias = "Page1VM";
-        public static readonly string Page2ViewModelAlias = "Page2VM";
-        public static readonly string Page3ViewModelAlias = "Page3VM";
         public static readonly string NotFoundPageViewModelAlias = "404VM";
+        public static readonly string PageOrdersViewModelAlias = "PageOrdersVM";
+        public static readonly string PageProductCategoriesViewModelAlias = "PageProductCategoriesVM";
+        public static readonly string PageProductsViewModelAlias = "PageProductsVM";
+        public static readonly string PageSuppliersViewModelAlias = "PageSuppliersVM";
+        public static readonly string PageUsersViewModelAlias = "PageUsersVM";
 
         #endregion
 
@@ -21,17 +24,20 @@ namespace Textile.ViewModels
         private readonly IViewModelsResolver _resolver;
 
         private ICommand _goToPathCommand;
-
         private ICommand _goToPage1Command;
-
-        private ICommand _goToPage2Command;
-
-        private ICommand _goToPage3Command;
+        private ICommand _goToPageOrdersCommand;
+        private ICommand _goToPageProductCategoriesCommand;
+        private ICommand _goToPageProductsCommand;
+        private ICommand _goToPageSuppliersCommand;
+        private ICommand _goToPageUsersCommand;
 
         private readonly INotifyPropertyChanged _p1ViewModel;
-        private readonly INotifyPropertyChanged _p2ViewModel;
-        private readonly INotifyPropertyChanged _p3ViewModel;
-
+        private readonly INotifyPropertyChanged _pOrdersViewModel;
+        private readonly INotifyPropertyChanged _pProductCategoriesViewModel;
+        private readonly INotifyPropertyChanged _pProductsViewModel;
+        private readonly INotifyPropertyChanged _pSuppliersViewModel;
+        private readonly INotifyPropertyChanged _pUsersViewModel;
+        
         #endregion
 
 
@@ -60,23 +66,50 @@ namespace Textile.ViewModels
             }
         }
 
-        public ICommand GoToPage2Command
+        public ICommand GoToPageOrdersCommand
         {
-            get { return _goToPage2Command; }
+            get { return _goToPageOrdersCommand; }
             set
             {
-                _goToPage2Command = value;
-                RaisePropertyChanged("GoToPage2Command");
+                _goToPageOrdersCommand = value;
+                RaisePropertyChanged("GoToPageOrdersCommand");
             }
         }
 
-        public ICommand GoToPage3Command
+        public ICommand GoToPageProductCategoriesCommand
         {
-            get { return _goToPage3Command; }
+            get { return _goToPageProductCategoriesCommand; }
             set
             {
-                _goToPage3Command = value;
-                RaisePropertyChanged("GoToPage3Command");
+                _goToPageProductCategoriesCommand = value;
+                RaisePropertyChanged("GoToPageProductCategoriesCommand");
+            }
+        }
+        public ICommand GoToPageSuppliersCommand
+        {
+            get { return _goToPageSuppliersCommand; }
+            set
+            {
+                _goToPageSuppliersCommand = value;
+                RaisePropertyChanged("GoToPageSuppliersCommand");
+            }
+        }
+        public ICommand GoToPageProductsCommand
+        {
+            get { return _goToPageProductsCommand; }
+            set
+            {
+                _goToPageProductsCommand = value;
+                RaisePropertyChanged("GoToPageProductsCommand");
+            }
+        }
+        public ICommand GoToPageUsersCommand
+        {
+            get { return _goToPageUsersCommand; }
+            set
+            {
+                _goToPageUsersCommand = value;
+                RaisePropertyChanged("GoToPageUsersCommand");
             }
         }
 
@@ -85,14 +118,29 @@ namespace Textile.ViewModels
             get { return _p1ViewModel; }
         }
 
-        public INotifyPropertyChanged Page2ViewModel
+        public INotifyPropertyChanged PageOrdersViewModel
         {
-            get { return _p2ViewModel; }
+            get { return _pOrdersViewModel; }
         }
 
-        public INotifyPropertyChanged Page3ViewModel
+        public INotifyPropertyChanged PageProductCategoriesViewModel
         {
-            get { return _p3ViewModel; }
+            get { return _pProductCategoriesViewModel; }
+        }
+
+        public INotifyPropertyChanged PageProductsViewModel
+        {
+            get { return _pProductsViewModel; }
+        }
+
+        public INotifyPropertyChanged PageSuppliersViewModel
+        {
+            get { return _pSuppliersViewModel; }
+        }
+
+        public INotifyPropertyChanged PageUsersViewModel
+        {
+            get { return _pUsersViewModel; }
         }
 
         #endregion
@@ -105,15 +153,16 @@ namespace Textile.ViewModels
             _resolver = resolver;
 
             _p1ViewModel = _resolver.GetViewModelInstance(Page1ViewModelAlias);
-            _p2ViewModel = _resolver.GetViewModelInstance(Page2ViewModelAlias);
-            _p3ViewModel = _resolver.GetViewModelInstance(Page3ViewModelAlias);
+            _pOrdersViewModel = _resolver.GetViewModelInstance(PageOrdersViewModelAlias);
+            _pProductCategoriesViewModel = _resolver.GetViewModelInstance(PageProductCategoriesViewModelAlias);
+            _pProductsViewModel = _resolver.GetViewModelInstance(PageProductsViewModelAlias);
+            _pSuppliersViewModel = _resolver.GetViewModelInstance(PageSuppliersViewModelAlias);
+            _pUsersViewModel = _resolver.GetViewModelInstance(PageUsersViewModelAlias);
 
             InitializeCommands();
         }
 
         #endregion
-
-
 
         private void InitializeCommands()
         {
@@ -122,9 +171,15 @@ namespace Textile.ViewModels
 
             GoToPage1Command = new RelayCommand<INotifyPropertyChanged>(GoToPage1CommandExecute);
 
-            GoToPage2Command = new RelayCommand<INotifyPropertyChanged>(GoToPage2CommandExecute);
+            GoToPageOrdersCommand = new RelayCommand<INotifyPropertyChanged>(GoToPageOrdersCommandExecute);
 
-            GoToPage3Command = new RelayCommand<INotifyPropertyChanged>(GoToPage3CommandExecute);
+            GoToPageProductCategoriesCommand = new RelayCommand<INotifyPropertyChanged>(GoToPageProductCategoriesCommandExecute);
+
+            GoToPageProductsCommand = new RelayCommand<INotifyPropertyChanged>(GoToPageProductsCommandExecute);
+
+            GoToPageSuppliersCommand = new RelayCommand<INotifyPropertyChanged>(GoToPageSuppliersCommandExecute);
+
+            GoToPageUsersCommand = new RelayCommand<INotifyPropertyChanged>(GoToPageUsersCommandExecute);
         }
 
         private void GoToPathCommandExecute(string alias)
@@ -142,14 +197,26 @@ namespace Textile.ViewModels
             Navigation.Navigate(Navigation.Page1Alias, Page1ViewModel);
         }
 
-        private void GoToPage2CommandExecute(INotifyPropertyChanged viewModel)
+        private void GoToPageOrdersCommandExecute(INotifyPropertyChanged viewModel)
         {
-            Navigation.Navigate(Navigation.Page2Alias, Page1ViewModel);
+            Navigation.Navigate(Navigation.PageOrdersAlias, Page1ViewModel);
         }
 
-        private void GoToPage3CommandExecute(INotifyPropertyChanged viewModel)
+        private void GoToPageProductCategoriesCommandExecute(INotifyPropertyChanged viewModel)
         {
-            Navigation.Navigate(Navigation.Page3Alias, Page1ViewModel);
+            Navigation.Navigate(Navigation.PageProductCategoriesAlias, Page1ViewModel);
+        }
+        private void GoToPageProductsCommandExecute(INotifyPropertyChanged viewModel)
+        {
+            Navigation.Navigate(Navigation.PageProductsAlias, Page1ViewModel);
+        }
+        private void GoToPageSuppliersCommandExecute(INotifyPropertyChanged viewModel)
+        {
+            Navigation.Navigate(Navigation.PageSuppliersAlias, Page1ViewModel);
+        }
+        private void GoToPageUsersCommandExecute(INotifyPropertyChanged viewModel)
+        {
+            Navigation.Navigate(Navigation.PageUsersAlias, Page1ViewModel);
         }
     }
 }
