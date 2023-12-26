@@ -11,9 +11,12 @@ namespace Textile.Views
         #region Constants
 
         public static readonly string Page1Alias = "Page1";
-        public static readonly string Page2Alias = "Page2";
-        public static readonly string Page3Alias = "Page3";
         public static readonly string NotFoundPageAlias = "404";
+        public static readonly string PageOrdersAlias = "PageOrders";
+        public static readonly string PageProductCategoriesAlias = "PageProductCategories";
+        public static readonly string PageProductsAlias = "PageProducts";
+        public static readonly string PageSuppliersAlias = "PageSuppliers";
+        public static readonly string PageUsersAlias = "PageUsers";
 
         #endregion
 
