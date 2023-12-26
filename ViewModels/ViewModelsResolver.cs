@@ -15,6 +15,11 @@ namespace Textile.ViewModels
             // TODO: Add Pages for navigation
             _vmResolvers.Add(MainViewModel.Page1ViewModelAlias, () => new Page1ViewModel());
             _vmResolvers.Add(MainViewModel.NotFoundPageViewModelAlias, () => new Page404ViewModel());
+            _vmResolvers.Add(MainViewModel.PageOrdersViewModelAlias, () => new PageOrdersViewModel());
+            _vmResolvers.Add(MainViewModel.PageProductCategoriesViewModelAlias, () => new PageProductCategoriesViewModel());
+            _vmResolvers.Add(MainViewModel.PageProductsViewModelAlias, () => new PageProductsViewModel());
+            _vmResolvers.Add(MainViewModel.PageSuppliersViewModelAlias, () => new PageSuppliersViewModel());
+            _vmResolvers.Add(MainViewModel.PageUsersViewModelAlias, () => new PageUsersViewModel());
         }
 
         public INotifyPropertyChanged GetViewModelInstance(string alias)
