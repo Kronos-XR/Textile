@@ -18,9 +18,9 @@ namespace Textile.Views.Pages
     /// <summary>
     /// Логика взаимодействия для ProductCategoriesPage.xaml
     /// </summary>
-    public partial class ProductCategoriesPage : Page
+    public partial class PageProductCategories : Page
     {
-        public ProductCategoriesPage()
+        public PageProductCategories()
         {
             InitializeComponent();
         }

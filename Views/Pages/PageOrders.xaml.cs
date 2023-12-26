@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Textile.Views.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для SuppliersPage.xaml
+    /// Логика взаимодействия для OrdersPage.xaml
     /// </summary>
-    public partial class SuppliersPage : Page
+    public partial class PageOrders : Page
     {
-        public SuppliersPage()
+        public PageOrders()
         {
             InitializeComponent();
         }
