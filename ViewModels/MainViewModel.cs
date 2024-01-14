@@ -113,35 +113,12 @@ namespace Textile.ViewModels
             }
         }
 
-        public INotifyPropertyChanged Page1ViewModel
-        {
-            get { return _p1ViewModel; }
-        }
-
-        public INotifyPropertyChanged PageOrdersViewModel
-        {
-            get { return _pOrdersViewModel; }
-        }
-
-        public INotifyPropertyChanged PageProductCategoriesViewModel
-        {
-            get { return _pProductCategoriesViewModel; }
-        }
-
-        public INotifyPropertyChanged PageProductsViewModel
-        {
-            get { return _pProductsViewModel; }
-        }
-
-        public INotifyPropertyChanged PageSuppliersViewModel
-        {
-            get { return _pSuppliersViewModel; }
-        }
-
-        public INotifyPropertyChanged PageUsersViewModel
-        {
-            get { return _pUsersViewModel; }
-        }
+        public INotifyPropertyChanged Page1ViewModel => _p1ViewModel;
+        public INotifyPropertyChanged PageOrdersViewModel => _pOrdersViewModel;
+        public INotifyPropertyChanged PageProductCategoriesViewModel => _pProductCategoriesViewModel;
+        public INotifyPropertyChanged PageProductsViewModel => _pProductsViewModel;
+        public INotifyPropertyChanged PageSuppliersViewModel => _pSuppliersViewModel;
+        public INotifyPropertyChanged PageUsersViewModel => _pUsersViewModel;
 
         #endregion
 
