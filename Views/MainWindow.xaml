@@ -7,6 +7,23 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1400">
     <Grid>
-        <Frame x:Name="MainFrame" Background="#CCCCCC"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.20*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
+            <StackPanel>
+                <Button Content="P 1 w/o data" Command="{Binding GoToPathCommand}" CommandParameter="pack://application:,,,/Pages;component/Page1.xaml"/>
+                <Button Content="Page 1" Command="{Binding GoToPage1Command}" CommandParameter="{Binding Page1ViewModel}"/>
+                <Button Content="Page Orders" Command="{Binding GoToPageOrdersCommand}" CommandParameter="{Binding PageOrdersViewModel}"/>
+                <Button Content="Page ProductCategories" Command="{Binding GoToPageProductCategoriesCommand}" CommandParameter="{Binding PageProductCategoriesViewModel}"/>
+                <Button Content="Page Products" Command="{Binding GoToPageProductsCommand}" CommandParameter="{Binding PageProductsViewModel}"/>
+                <Button Content="Page Suppliers" Command="{Binding GoToPageSuppliersCommand}" CommandParameter="{Binding PageSuppliersViewModel}"/>
+                <Button Content="Page Users" Command="{Binding GoToPageUsersCommand}" CommandParameter="{Binding PageUsersViewModel}"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <Frame x:Name="MainFrame" Grid.Column="1" Background="#CCCCCC"/>
+
     </Grid>
 </Window>
