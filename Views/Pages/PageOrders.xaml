@@ -9,6 +9,6 @@
       Title="OrdersPage">
 
     <Grid>
-        
+        <TextBlock Text="{Binding PageOrdersText, FallbackValue='EEEE DATA!!!'}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="Bold"/>
     </Grid>
 </Page>
