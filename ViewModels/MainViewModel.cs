@@ -176,24 +176,24 @@ namespace Textile.ViewModels
 
         private void GoToPageOrdersCommandExecute(INotifyPropertyChanged viewModel)
         {
-            Navigation.Navigate(Navigation.PageOrdersAlias, Page1ViewModel);
+            Navigation.Navigate(Navigation.PageOrdersAlias, PageOrdersViewModel);
         }
 
         private void GoToPageProductCategoriesCommandExecute(INotifyPropertyChanged viewModel)
         {
-            Navigation.Navigate(Navigation.PageProductCategoriesAlias, Page1ViewModel);
+            Navigation.Navigate(Navigation.PageProductCategoriesAlias, PageProductCategoriesViewModel);
         }
         private void GoToPageProductsCommandExecute(INotifyPropertyChanged viewModel)
         {
-            Navigation.Navigate(Navigation.PageProductsAlias, Page1ViewModel);
+            Navigation.Navigate(Navigation.PageProductsAlias, PageProductsViewModel);
         }
         private void GoToPageSuppliersCommandExecute(INotifyPropertyChanged viewModel)
         {
-            Navigation.Navigate(Navigation.PageSuppliersAlias, Page1ViewModel);
+            Navigation.Navigate(Navigation.PageSuppliersAlias, PageSuppliersViewModel);
         }
         private void GoToPageUsersCommandExecute(INotifyPropertyChanged viewModel)
         {
-            Navigation.Navigate(Navigation.PageUsersAlias, Page1ViewModel);
+            Navigation.Navigate(Navigation.PageUsersAlias, PageUsersViewModel);
         }
     }
 }
