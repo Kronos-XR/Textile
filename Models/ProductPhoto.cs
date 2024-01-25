@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace DiplomBackend.Models;
+namespace Textile.Models;
 
 public partial class ProductPhoto
 {

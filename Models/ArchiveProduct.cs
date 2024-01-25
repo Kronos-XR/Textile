@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace DiplomBackend.Models;
+namespace Textile.Models;
 
 public partial class ArchiveProduct
 {

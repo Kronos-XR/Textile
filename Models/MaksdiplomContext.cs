@@ -2,7 +2,7 @@
 //using System.Collections.Generic;
 //using Microsoft.EntityFrameworkCore;
 
-//namespace DiplomBackend.Models;
+//namespace Textile.Models;
 
 //public partial class MaksdiplomContext : DbContext
 //{
