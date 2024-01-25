@@ -9,31 +9,31 @@ using System.Threading.Tasks;
 
 namespace Textile.Services
 {
+    //TODO: сделать Асинхронным
     internal class ApiService
     {
-        public static async void GetDataProductsFromApi()
+        public static Product GetDataProductFromApi(int productId)
         {
-            int productId = 1;
-            //string apiUrl = "http://www.diplomapi.somee.com/api/products";
             string apiUrl = $"http://www.diplomapi.somee.com/api/products/{productId}";
-
 
             using (HttpClient client = new HttpClient())
             {
-
                 try
                 {
                     // Выполняем GET-запрос
-                    HttpResponseMessage response = await client.GetAsync(apiUrl);
+                    HttpResponseMessage response = client.GetAsync(apiUrl).Result; // Блокируем выполнение до завершения асинхронной операции
 
                     // Проверяем успешность запроса
                     if (response.IsSuccessStatusCode)
                     {
                         // Читаем содержимое ответа
-                        string responseData = await response.Content.ReadAsStringAsync();
+                        string responseData = response.Content.ReadAsStringAsync().Result; // Блокируем выполнение до завершения асинхронной операции
 
-                        // Обрабатываем данные
-                        Console.WriteLine(responseData);
+                        // Десериализуем JSON в объект Product
+                        Product product = JsonConvert.DeserializeObject<Product>(responseData);
+
+                        // Возвращаем полученный продукт
+                        return product;
                     }
                     else
                     {
@@ -44,7 +44,21 @@ namespace Textile.Services
                 {
                     Console.WriteLine($"Произошла ошибка: {ex.Message}");
                 }
-            }           
+
+                // В случае ошибки или неудачного запроса возвращаем null
+                return null;
+            }
+        }
+
+        public static void GetProduct(int productId = 1)
+        {
+            Product product = GetDataProductFromApi(productId);
+
+            if (product != null)
+            {
+                // Теперь у вас есть объект Product, и вы можете использовать его как вам нужно
+                Console.WriteLine($"Product ID: {product.Id}, Name: {product.ProductName}, Price: {product.Price}");
+            }
         }
     }
 }

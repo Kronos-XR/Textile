@@ -4,9 +4,57 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Textile"
+        
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <Border BorderBrush="blue" BorderThickness="3" CornerRadius="8"
+                Grid.Row="0" Grid.Column="0" Margin="10">
+            <StackPanel >
+                <Label Content="Get"/>
+                <Label Content="{Binding product.Id}"/>
+                <Label Content="{Binding product.ProductName}"/>
+                <Label Content="{Binding product.Description}"/>
+                <Label Content="{Binding product.Price}"/>
+                <Label Content="{Binding product.Count}"/>
+                <Label Content="{Binding product.Article}"/>
+                <Label Content="{Binding product.IdCategory}"/>
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="Green" BorderThickness="3" CornerRadius="8"
+                Grid.Row="1" Grid.Column="0" Margin="10">
+            <StackPanel >
+                <Label Content="Post"/>
+                <Label Content="{Binding a}"/>
+                <Label Content="{Binding a}"/>
+                <Label Content="{Binding a}"/>
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="Orange" BorderThickness="3" CornerRadius="8"
+                Grid.Row="0" Grid.Column="1" Margin="10">
+            <StackPanel>
+                <Label Content="Put"/>
+                <Label Content="{Binding a}"/>
+                <Label Content="{Binding a}"/>
+                <Label Content="{Binding a}"/>
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="Red" BorderThickness="3" CornerRadius="8"
+                Grid.Row="1" Grid.Column="1" Margin="10">
+            <StackPanel>
+                <Label Content="Delete"/>
+                <Label Content="{Binding a}"/>
+                <Label Content="{Binding a}"/>
+                <Label Content="{Binding a}"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>
