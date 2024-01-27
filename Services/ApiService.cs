@@ -6,33 +6,27 @@ using System.Net;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Text;
 
 namespace Textile.Services
 {
-    //TODO: сделать Асинхронным
+    //TODO: Разделить адреса api от функционала, если бекенд переедет то нужно будет чинить каждую ссылку 
     internal class ApiService
     {
-        public static Product GetDataProductFromApi(int productId)
+        #region GetProduct
+        public static async Task<Product> GetDataProductFromApiAsync(int productId)
         {
             string apiUrl = $"http://www.diplomapi.somee.com/api/products/{productId}";
-
             using (HttpClient client = new HttpClient())
             {
                 try
                 {
-                    // Выполняем GET-запрос
-                    HttpResponseMessage response = client.GetAsync(apiUrl).Result; // Блокируем выполнение до завершения асинхронной операции
+                    HttpResponseMessage response = await client.GetAsync(apiUrl);
 
-                    // Проверяем успешность запроса
                     if (response.IsSuccessStatusCode)
                     {
-                        // Читаем содержимое ответа
-                        string responseData = response.Content.ReadAsStringAsync().Result; // Блокируем выполнение до завершения асинхронной операции
-
-                        // Десериализуем JSON в объект Product
+                        string responseData = await response.Content.ReadAsStringAsync();
                         Product product = JsonConvert.DeserializeObject<Product>(responseData);
-
-                        // Возвращаем полученный продукт
                         return product;
                     }
                     else
@@ -44,22 +38,55 @@ namespace Textile.Services
                 {
                     Console.WriteLine($"Произошла ошибка: {ex.Message}");
                 }
-
-                // В случае ошибки или неудачного запроса возвращаем null
                 return null;
             }
         }
 
-        public static void GetProduct(int productId = 1)
+        public static async Task GetProductAsync(int productId = 1)
         {
-            Product product = GetDataProductFromApi(productId);
-
-            if (product != null)
-            {
-                // Теперь у вас есть объект Product, и вы можете использовать его как вам нужно
-                Console.WriteLine($"Product ID: {product.Id}, Name: {product.ProductName}, Price: {product.Price}");
-            }
-            return null;
+            Product product = await GetDataProductFromApiAsync(productId);
         }
+        #endregion
+
+        #region Put
+        public static async Task<Product> UpdateDataProductToApiAsync(int productId, Product updatedProduct)
+        {
+            string apiUrl = $"http://www.diplomapi.somee.com/api/products/{productId}";
+
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    // Сериализация объекта updatedProduct в JSON и отправка в теле запроса
+                    string jsonBody = JsonConvert.SerializeObject(updatedProduct);
+                    HttpContent content = new StringContent(jsonBody, Encoding.UTF8, "application/json");
+
+                    // Выполнение PUT запроса
+                    HttpResponseMessage response = await client.PutAsync(apiUrl, content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string responseData = await response.Content.ReadAsStringAsync();
+                        Product product = JsonConvert.DeserializeObject<Product>(responseData);
+                        return product;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Ошибка: {response.StatusCode} - {response.ReasonPhrase}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Произошла ошибка: {ex.Message}");
+                }
+                return null;
+            }
+        }
+
+        public static async Task UpdateProductAsync(int productId, Product updatedProduct)
+        {
+            Product product = await UpdateDataProductToApiAsync(productId, updatedProduct);
+        }
+        #endregion
     }
 }

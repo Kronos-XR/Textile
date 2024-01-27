@@ -3,12 +3,91 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Textile.Views.Pages"
+      xmlns:local="clr-namespace:Textile.Views.Pages" 
+      xmlns:localVM="clr-namespace:Textile.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ProductsPage">
 
+    <Page.DataContext>
+        <localVM:PageProductsViewModel/>
+    </Page.DataContext>
     <Grid>
-        
+        <StackPanel HorizontalAlignment="Center">
+            <Button Content="LoadData" Command="{Binding LoadDataAsync}"  MinWidth="40"/>
+            <TextBox Text="{Binding ProductId, Mode=TwoWay}" />
+        </StackPanel>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" MinHeight="200"/>
+                <RowDefinition Height="*" MinHeight="200"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" MinWidth="200"/>
+                <ColumnDefinition Width="*" MinWidth="200"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel  Grid.Row="0" Grid.Column="0" Margin="10">
+                <Button Content="LoadData" Command="{Binding LoadDataAsync}"/>
+                <TextBox Text="{Binding ProductId, Mode=TwoWay}" />
+                <Border BorderBrush="blue" BorderThickness="3" CornerRadius="8">
+                    <StackPanel DataContext="{Binding}">
+                        <Label Content="Get"/>
+                        <Label Content="{Binding Product.Id}"/>
+                        <Label Content="{Binding Product.ProductName}"/>
+                        <Label Content="{Binding Product.Description}"/>
+                        <Label Content="{Binding Product.Price}"/>
+                        <Label Content="{Binding Product.Count}"/>
+                        <Label Content="{Binding Product.Article}"/>
+                        <Label Content="{Binding Product.IdCategory}"/>
+                    </StackPanel>
+                    </Border>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Grid.Column="0" Margin="10">
+                <Border BorderBrush="Green" BorderThickness="3" CornerRadius="8">
+                    <StackPanel >
+                        <Label Content="Post"/>
+                        <Label Content="{Binding a}"/>
+                        <Label Content="{Binding a}"/>
+                        <Label Content="{Binding a}"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Grid.Row="0" Grid.Column="1" Margin="10">
+                <Button Content="Update" Command="{Binding UpdateDataCommand}"/>
+                <TextBox Text="{Binding ProductId, Mode=TwoWay}" />
+
+                <Border BorderBrush="blue" BorderThickness="3" CornerRadius="8" >
+                    <StackPanel DataContext="{Binding}">
+                        <Label Content="Update"/>
+                        <TextBox Text="{Binding Product.ProductName, Mode=TwoWay}" />
+                        <TextBox Text="{Binding Product.Description, Mode=TwoWay}" />
+                        <TextBox Text="{Binding Product.Price, Mode=TwoWay}" />
+
+                        <Label Content="Old Data"/>
+                        <Label Content="{Binding Product.Id}"/>
+                        <Label Content="{Binding Product.ProductName}"/>
+                        <Label Content="{Binding Product.Description}"/>
+                        <Label Content="{Binding Product.Price}"/>
+                        <Label Content="{Binding Product.Count}"/>
+                        <Label Content="{Binding Product.Article}"/>
+                        <Label Content="{Binding Product.IdCategory}"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
+                <Border BorderBrush="Red" BorderThickness="3" CornerRadius="8">
+                    <StackPanel>
+                        <Label Content="Delete"/>
+                        <Label Content="{Binding a}"/>
+                        <Label Content="{Binding a}"/>
+                        <Label Content="{Binding a}"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>
