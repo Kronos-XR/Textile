@@ -15,11 +15,23 @@ namespace Textile.Services
     {
         #region HttpClient Configuration
 
+        private static ApiService _instance;
         private readonly HttpClient _httpClient;
         public ApiService()
         {
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = new System.Uri("http://www.diplomapi.somee.com");
+        }
+        public static ApiService Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new ApiService();
+                }
+                return _instance;
+            }
         }
         #endregion
 
@@ -137,17 +149,17 @@ namespace Textile.Services
         #endregion 
 
         #region Tasks for page
-        public async Task GetProductAsync(int productId)
+        public async Task<Product> GetProductAsync(int productId)
         {
-            Product product = await GetProductByIdInApiAsync(productId);
+            return await GetProductByIdInApiAsync(productId);
         }
         public async Task CreateProductAsync(Product product)
         {
             await PostProductInApiAsync(product);
         }
-        public async Task UpdateProductAsync(Product product)
+        public async Task<HttpResponseMessage> UpdateProductAsync(Product product)
         {
-            await PutProductInApiAsync(product);
+            return await PutProductInApiAsync(product);
         }
         public async Task DeleteProductAsync(int productId)
         {

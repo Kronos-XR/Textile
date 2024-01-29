@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -41,7 +43,8 @@ namespace Textile.ViewModels
 
         public async Task LoadDataAsync()
         {
-            Product = await ApiService.GetDataProductFromApiAsync(ProductId);
+            ApiService apiService = new ApiService();
+            Product = await apiService.GetProductAsync(ProductId);
             
         }
 
@@ -53,17 +56,18 @@ namespace Textile.ViewModels
             return true;
         }
 
-        private async Task UpdateDataAsync()
+        private async Task UpdateDataAsync() // поменять название
         {
-            // Вызываем метод для выполнения PUT-запроса с обновленными данными
-            Product updatedProduct = await ApiService.UpdateDataProductToApiAsync(ProductId, Product);
+            ApiService apiService = new ApiService();
+            HttpResponseMessage updatedProduct = await apiService.UpdateProductAsync(Product);
 
             if (updatedProduct != null)
             {
-                // Обновляем данные после успешного PUT-запроса
-                Product = updatedProduct;
-                // Может быть добавлена дополнительная логика после обновления данных
-                Console.WriteLine("Данные успешно обновлены.");
+                Console.WriteLine("Данные успешно изменены.");
+            }
+            else
+            {
+                Console.WriteLine("Ошибка не изменены.");
             }
         }
     }
