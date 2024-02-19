@@ -38,7 +38,7 @@ namespace Textile.ViewModels
         #region ICommand Implementation
 
         [DebuggerStepThrough]
-        public bool CanExecute(object parameter)
+        public bool CanExecute(object? parameter)
         {
             return _canExecute == null ? true : _canExecute(parameter);
         }
@@ -49,13 +49,52 @@ namespace Textile.ViewModels
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        public void Execute(object parameter)
+        public void Execute(object? parameter)
         {
             if (parameter is T)
             {
                 var typedParameter = (T)parameter;
                 _execute(typedParameter);
             }
+        }
+
+        #endregion
+    }
+    public class  RelayCommand : ICommand
+    {
+        #region Fields
+
+        private readonly Action<object> execute = null;
+        private readonly Func<object, bool> canExecute;
+
+        #endregion
+
+        #region Constructors
+
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
+
+        public  RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
+        {
+            this.execute = execute;
+            this.canExecute = canExecute;
+        }
+
+        #endregion
+
+        #region ICommand Implementation
+
+        public bool CanExecute(object? parameter)
+        {
+            return canExecute == null || canExecute(parameter);
+        }
+          public void Execute(object? parameter)
+        {
+                execute(parameter);
+            
         }
 
         #endregion
