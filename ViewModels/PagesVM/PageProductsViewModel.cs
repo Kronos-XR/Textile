@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -37,7 +38,7 @@ namespace Textile.ViewModels
             {
                 _product = value;
                 RaisePropertyChanged(nameof(Product));
-                UpdateDataAsync();
+                LoadDataAsync();
             }
         }
 
@@ -45,8 +46,16 @@ namespace Textile.ViewModels
         {
             ApiService apiService = new ApiService();
             Product = await apiService.GetProductAsync(ProductId);
-            
         }
+
+        public void LoadData()
+        {
+            ProductId = 111;
+        }
+
+
+        public  RelayCommand a => new  RelayCommand((param) => LoadData());
+        //public RelayCommand<AsyncVoidMethodBuilder> GetDataCommand => new RelayCommand<AsyncVoidMethodBuilder>(async (param) => await LoadDataAsync());
 
         public ICommand UpdateDataCommand => new RelayCommand<object>(async (param) => await UpdateDataAsync(), CanUpdateData);
 
