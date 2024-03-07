@@ -14,9 +14,6 @@
     </Page.DataContext>
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <StackPanel Margin="10">
-
-            <Button Content="IDRead" Command="{Binding LoadDataAsync}" Margin="0,0,10,0"/>
-
             <TextBlock Text="Product Information" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
 
             <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
@@ -63,13 +60,11 @@
                 <Button Content="Create" Command="{Binding a}" Margin="0,0,10,0"/>
                 <Button Content="Read"   Command="{Binding }" Margin="0,0,10,0"/>
                 <Button Content="IDRead" Command="{Binding GetDataCommand}" Margin="0,0,10,0"/>
-                <Button Content="Update" Command="{Binding }" Margin="0,0,10,0"/>
+                <Button Content="Update" Command="{Binding UpdateDataCommand}" Margin="0,0,10,0"/>
                 <Button Content="Delete" Command="{Binding }"/>
             </StackPanel>
 
             <StackPanel  Grid.Row="0" Grid.Column="0" Margin="10">
-                <Button Content="LoadData" Command="{Binding LoadDataAsync}"/>
-                <TextBox Text="{Binding ProductId, Mode=TwoWay}" />
                 <Border BorderBrush="blue" BorderThickness="3" CornerRadius="8">
                     <StackPanel DataContext="{Binding}">
                         <Label Content="Get"/>

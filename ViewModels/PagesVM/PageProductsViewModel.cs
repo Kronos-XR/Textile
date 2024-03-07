@@ -38,7 +38,7 @@ namespace Textile.ViewModels
             {
                 _product = value;
                 RaisePropertyChanged(nameof(Product));
-                LoadDataAsync();
+                //LoadDataAsync();
             }
         }
 
@@ -48,16 +48,17 @@ namespace Textile.ViewModels
             Product = await apiService.GetProductAsync(ProductId);
         }
 
-        public void LoadData()
+        public async void LoadData()
         {
-            ProductId = 111;
+            ApiService apiService = new ApiService();
+            Product = await apiService.GetProductAsync(ProductId);
         }
 
 
-        public  RelayCommand a => new  RelayCommand((param) => LoadData());
-        //public RelayCommand<AsyncVoidMethodBuilder> GetDataCommand => new RelayCommand<AsyncVoidMethodBuilder>(async (param) => await LoadDataAsync());
+        public RelayCommand a => new  RelayCommand((param) => LoadData());
+        public RelayCommand GetDataCommand => new RelayCommand(async (param) => await LoadDataAsync());
+        public RelayCommand UpdateDataCommand => new RelayCommand(async (param) => await UpdateDataAsync(), CanUpdateData);
 
-        public ICommand UpdateDataCommand => new RelayCommand<object>(async (param) => await UpdateDataAsync(), CanUpdateData);
 
         private bool CanUpdateData(object parameter)
         {

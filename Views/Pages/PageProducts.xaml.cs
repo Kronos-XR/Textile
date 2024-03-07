@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Textile.Models;
 using Textile.ViewModels;
 
 namespace Textile.Views.Pages
@@ -24,28 +27,6 @@ namespace Textile.Views.Pages
         public PageProducts()
         {
             InitializeComponent();
-        }
-
-        private void CreateButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void ReadButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void IdReadButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void UpdateButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
