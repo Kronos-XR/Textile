@@ -31,7 +31,6 @@ namespace Textile.ViewModels
                 {
                     _productId = value;
                     RaisePropertyChanged(nameof(ProductId));
-                    LoadData();
                 }
             }
         }
@@ -43,17 +42,10 @@ namespace Textile.ViewModels
             {
                 _product = value;
                 RaisePropertyChanged(nameof(Product));
-                //LoadDataAsync();
             }
         }
 
-        public async Task LoadDataAsyncTask()
-        {
-            ApiService apiService = new ApiService();
-            Product = await apiService.GetProductAsync(ProductId);
-        }
-
-        public async void LoadData()
+        public async Task LoadDataTask()
         {
             ApiService apiService = new ApiService();
             Product = await apiService.GetProductAsync(ProductId);
@@ -91,8 +83,7 @@ namespace Textile.ViewModels
             await apiService.DeleteProductAsync(ProductId);
         }
 
-        public RelayCommand a => new RelayCommand((param) => LoadData());
-        public RelayCommand GetDataCommand => new RelayCommand(async (param) => await LoadDataAsyncTask());
+        public RelayCommand GetDataCommand => new RelayCommand(async (param) => await LoadDataTask());
         public RelayCommand UpdateDataCommand => new RelayCommand(async (param) => await UpdateDataTask(), CanUpdateData);
         public RelayCommand CreateDataCommand => new RelayCommand(async (param) => await CreateProductTask());
         public RelayCommand DeleteDataCommand => new RelayCommand(async (param) => await DeleteProductTask());

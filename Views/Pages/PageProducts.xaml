@@ -58,8 +58,7 @@
 
             <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                 <Button Content="Create" Command="{Binding CreateDataCommand}" Margin="0,0,10,0"/>
-                <Button Content="Read"   Command="{Binding a}" Margin="0,0,10,0"/>
-                <Button Content="IDRead" Command="{Binding GetDataCommand}" Margin="0,0,10,0"/>
+                <Button Content="Read" Command="{Binding GetDataCommand}" Margin="0,0,10,0"/>
                 <Button Content="Update" Command="{Binding UpdateDataCommand}" Margin="0,0,10,0"/>
                 <Button Content="Delete" Command="{Binding DeleteDataCommand}"/>
             </StackPanel>
