@@ -57,24 +57,25 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <Button Content="Create" Command="{Binding a}" Margin="0,0,10,0"/>
-                <Button Content="Read"   Command="{Binding }" Margin="0,0,10,0"/>
+                <Button Content="Create" Command="{Binding CreateDataCommand}" Margin="0,0,10,0"/>
+                <Button Content="Read"   Command="{Binding a}" Margin="0,0,10,0"/>
                 <Button Content="IDRead" Command="{Binding GetDataCommand}" Margin="0,0,10,0"/>
                 <Button Content="Update" Command="{Binding UpdateDataCommand}" Margin="0,0,10,0"/>
-                <Button Content="Delete" Command="{Binding }"/>
+                <Button Content="Delete" Command="{Binding DeleteDataCommand}"/>
             </StackPanel>
 
             <StackPanel  Grid.Row="0" Grid.Column="0" Margin="10">
                 <Border BorderBrush="blue" BorderThickness="3" CornerRadius="8">
-                    <StackPanel DataContext="{Binding}">
+                    <StackPanel DataContext="{Binding Product}">
                         <Label Content="Get"/>
-                        <Label Content="{Binding Product.Id}"/>
-                        <Label Content="{Binding Product.ProductName}"/>
-                        <Label Content="{Binding Product.Description, Mode=TwoWay}"/>
-                        <Label Content="{Binding Product.Price}"/>
-                        <Label Content="{Binding Product.Count}"/>
-                        <Label Content="{Binding Product.Article}"/>
-                        <Label Content="{Binding Product.IdCategory}"/>
+                        <Label Content="{Binding Id}"/>
+                        <Label Content="{Binding ProductName}"/>
+                        <Label Content="{Binding Description}"/>
+                        <Label Content="{Binding Price}"/>
+                        <Label Content="{Binding Count}"/>
+                        <Label Content="{Binding Article}"/>
+                        <Label Content="{Binding IdCategory}"/>
+                        <Label Content="{Binding IdSupplier}"/>
                     </StackPanel>
                 </Border>
             </StackPanel>

@@ -92,6 +92,7 @@ namespace Textile.Services
         #region PostProductInApiAsync
         private async Task<int> PostProductInApiAsync(Product product)
         {
+            product.Id = 0;
             try
             {
                 string productJson = JsonConvert.SerializeObject(product);

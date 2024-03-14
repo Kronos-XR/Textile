@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using Textile.Models;
 using Textile.Services;
@@ -16,6 +17,10 @@ namespace Textile.ViewModels
     {
         private int _productId;
         private Product _product;
+        public PageProductsViewModel()
+        {
+            _product = new Product();
+        }
 
         public int ProductId
         {
@@ -26,7 +31,7 @@ namespace Textile.ViewModels
                 {
                     _productId = value;
                     RaisePropertyChanged(nameof(ProductId));
-                    LoadDataAsync();
+                    LoadData();
                 }
             }
         }
@@ -42,7 +47,7 @@ namespace Textile.ViewModels
             }
         }
 
-        public async Task LoadDataAsync()
+        public async Task LoadDataAsyncTask()
         {
             ApiService apiService = new ApiService();
             Product = await apiService.GetProductAsync(ProductId);
@@ -54,19 +59,13 @@ namespace Textile.ViewModels
             Product = await apiService.GetProductAsync(ProductId);
         }
 
-
-        public RelayCommand a => new  RelayCommand((param) => LoadData());
-        public RelayCommand GetDataCommand => new RelayCommand(async (param) => await LoadDataAsync());
-        public RelayCommand UpdateDataCommand => new RelayCommand(async (param) => await UpdateDataAsync(), CanUpdateData);
-
-
         private bool CanUpdateData(object parameter)
         {
             // Возвращаем true, если условие для выполнения обновления данных удовлетворено
             return true;
         }
 
-        private async Task UpdateDataAsync() // поменять название
+        private async Task UpdateDataTask()
         {
             ApiService apiService = new ApiService();
             HttpResponseMessage updatedProduct = await apiService.UpdateProductAsync(Product);
@@ -80,5 +79,22 @@ namespace Textile.ViewModels
                 Console.WriteLine("Ошибка не изменены.");
             }
         }
+        private async Task CreateProductTask()
+        {
+
+            ApiService apiService = new ApiService();
+            await apiService.CreateProductAsync(Product);
+        }
+        private async Task DeleteProductTask()
+        {
+            ApiService apiService = new ApiService();
+            await apiService.DeleteProductAsync(ProductId);
+        }
+
+        public RelayCommand a => new RelayCommand((param) => LoadData());
+        public RelayCommand GetDataCommand => new RelayCommand(async (param) => await LoadDataAsyncTask());
+        public RelayCommand UpdateDataCommand => new RelayCommand(async (param) => await UpdateDataTask(), CanUpdateData);
+        public RelayCommand CreateDataCommand => new RelayCommand(async (param) => await CreateProductTask());
+        public RelayCommand DeleteDataCommand => new RelayCommand(async (param) => await DeleteProductTask());
     }
 }
