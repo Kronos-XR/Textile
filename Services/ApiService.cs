@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text;
+using System.Diagnostics;
 
 namespace Textile.Services
 {
@@ -20,7 +21,9 @@ namespace Textile.Services
         public ApiService()
         {
             _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new System.Uri("http://www.diplomapi.somee.com");
+            //_httpClient.BaseAddress = new System.Uri("http://www.diplomapi.somee.com");
+            _httpClient.BaseAddress = new System.Uri("http://localhost:5160"); //For local debug with swagger
+
         }
         public static ApiService Instance
         {
@@ -51,12 +54,12 @@ namespace Textile.Services
                 }
                 else
                 {
-                    Console.WriteLine($"Ошибка: {response.StatusCode} - {response.ReasonPhrase}");
+                    Debug.WriteLine($"Ошибка: {response.StatusCode} - {response.ReasonPhrase}");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Произошла ошибка: {ex.Message}");
+                Debug.WriteLine($"Произошла ошибка: {ex.Message}");
             }
             return null;
         }
@@ -78,12 +81,12 @@ namespace Textile.Services
                 }
                 else
                 {
-                    Console.WriteLine($"Ошибка: {response.StatusCode} - {response.ReasonPhrase}");
+                    Debug.WriteLine($"Ошибка: {response.StatusCode} - {response.ReasonPhrase}");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Произошла ошибка: {ex.Message}");
+                Debug.WriteLine($"Произошла ошибка: {ex.Message}");
             }
             return null;
         }
@@ -104,11 +107,12 @@ namespace Textile.Services
                 string createdProductJson = await response.Content.ReadAsStringAsync();
                 Product createdProduct = JsonConvert.DeserializeObject<Product>(createdProductJson);
 
+                Debug.WriteLine($"Успешно создан с ID: {createdProduct.Id}");
                 return createdProduct.Id;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Произошла ошибка: {ex.Message}");
+                Debug.WriteLine($"Произошла ошибка: {ex.Message}");
             }
             return 0;
         }
@@ -127,7 +131,7 @@ namespace Textile.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Произошла ошибка: {ex.Message}");
+                Debug.WriteLine($"Произошла ошибка: {ex.Message}");
             }
             return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
@@ -143,7 +147,7 @@ namespace Textile.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Произошла ошибка: {ex.Message}");
+                Debug.WriteLine($"Произошла ошибка: {ex.Message}");
             }
             return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
