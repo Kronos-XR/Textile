@@ -38,8 +38,8 @@ namespace Textile.Services
         }
         #endregion
 
-        #region GetProductsInApiAsync
-        private async Task<List<Product>> GetProductsInApiAsync()
+        #region GetProductsListInApiAsync
+        private async Task<List<Product>> GetProductsListInApiAsync()
         {
             try
             {
@@ -154,6 +154,10 @@ namespace Textile.Services
         #endregion 
 
         #region Tasks for page
+        public async Task<List<Product>> GetProductsListAsync()
+        {
+            return await GetProductsListInApiAsync();
+        }
         public async Task<Product> GetProductAsync(int productId)
         {
             return await GetProductByIdInApiAsync(productId);

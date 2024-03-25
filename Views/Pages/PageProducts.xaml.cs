@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Textile.Models;
 using Textile.ViewModels;
+using Textile.Services;
 
 namespace Textile.Views.Pages
 {
@@ -26,7 +27,7 @@ namespace Textile.Views.Pages
     {
         public PageProducts()
         {
-            InitializeComponent();
+            InitializeComponent();           
         }
     }
 }

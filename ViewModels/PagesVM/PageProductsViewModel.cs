@@ -17,9 +17,11 @@ namespace Textile.ViewModels
     {
         private int _productId;
         private Product _product;
+        private List<Product> _productList;
         public PageProductsViewModel()
         {
             _product = new Product();
+            _productList = new List<Product>();
         }
 
         public int ProductId
@@ -44,11 +46,14 @@ namespace Textile.ViewModels
                 RaisePropertyChanged(nameof(Product));
             }
         }
-
-        public async Task LoadDataTask()
+        public List<Product> ProductList
         {
-            ApiService apiService = new ApiService();
-            Product = await apiService.GetProductAsync(ProductId);
+            get { return _productList; }
+            set
+            {
+                _productList = value;
+                RaisePropertyChanged(nameof(ProductList));
+            }
         }
 
         private bool CanUpdateData(object parameter)
@@ -71,6 +76,16 @@ namespace Textile.ViewModels
                 Console.WriteLine("Ошибка не изменены.");
             }
         }
+        private async Task GetProductListTask()
+        {
+            ApiService apiService = new ApiService();
+            ProductList = await apiService.GetProductsListAsync();
+        }
+        public async Task GetDataTask()
+        {
+            ApiService apiService = new ApiService();
+            Product = await apiService.GetProductAsync(ProductId);
+        }
         private async Task CreateProductTask()
         {
 
@@ -81,9 +96,10 @@ namespace Textile.ViewModels
         {
             ApiService apiService = new ApiService();
             await apiService.DeleteProductAsync(ProductId);
-        }
+        } 
 
-        public RelayCommand GetDataCommand => new RelayCommand(async (param) => await LoadDataTask());
+        public RelayCommand GetProductLisCommand => new RelayCommand(async (param) => await GetProductListTask());
+        public RelayCommand GetDataCommand => new RelayCommand(async (param) => await GetDataTask());
         public RelayCommand UpdateDataCommand => new RelayCommand(async (param) => await UpdateDataTask(), CanUpdateData);
         public RelayCommand CreateDataCommand => new RelayCommand(async (param) => await CreateProductTask());
         public RelayCommand DeleteDataCommand => new RelayCommand(async (param) => await DeleteProductTask());

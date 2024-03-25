@@ -12,72 +12,93 @@
     <Page.DataContext>
         <localVM:PageProductsViewModel/>
     </Page.DataContext>
-    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-        <StackPanel Margin="10">
-            <TextBlock Text="Product Information" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Margin="10">
+                <TextBlock Text="Product Information" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
 
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <TextBlock Text="Product ID:" Margin="0,0,10,0"/>
-                <TextBox Name="productIdTextBox" Text="{Binding ProductId, Mode=TwoWay}" Width="50"/>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Product ID:" Margin="0,0,10,0"/>
+                    <TextBox Name="productIdTextBox" Text="{Binding ProductId, Mode=TwoWay}" Width="50"/>
 
-            </StackPanel>
+                </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <TextBlock Text="Product Name:" Margin="0,0,10,0"/>
-                <TextBox Name="productNameTextBox" Text="{Binding Product.ProductName, Mode=TwoWay}" Width="200"/>
-            </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Product Name:" Margin="0,0,10,0"/>
+                    <TextBox Name="productNameTextBox" Text="{Binding Product.ProductName, Mode=TwoWay}" Width="200"/>
+                </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <TextBlock Text="Description:" Margin="0,0,10,0"/>
-                <TextBox Name="descriptionTextBox" Text="{Binding Product.Description, Mode=TwoWay}" Width="200"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <TextBlock Text="Price:" Margin="0,0,10,0"/>
-                <TextBox Name="priceTextBox" Text="{Binding Product.Price, Mode=TwoWay}" Width="200"/>
-            </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Description:" Margin="0,0,10,0"/>
+                    <TextBox Name="descriptionTextBox" Text="{Binding Product.Description, Mode=TwoWay}" Width="200"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Price:" Margin="0,0,10,0"/>
+                    <TextBox Name="priceTextBox" Text="{Binding Product.Price, Mode=TwoWay}" Width="200"/>
+                </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <TextBlock Text="Count:" Margin="0,0,10,0"/>
-                <TextBox Name="countTextBox" Text="{Binding Product.Count, Mode=TwoWay}" Width="200"/>
-            </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Count:" Margin="0,0,10,0"/>
+                    <TextBox Name="countTextBox" Text="{Binding Product.Count, Mode=TwoWay}" Width="200"/>
+                </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <TextBlock Text="Article:" Margin="0,0,10,0"/>
-                <TextBox Name="articleTextBox" Text="{Binding Product.Article, Mode=TwoWay}" Width="200"/>
-            </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Article:" Margin="0,0,10,0"/>
+                    <TextBox Name="articleTextBox" Text="{Binding Product.Article, Mode=TwoWay}" Width="200"/>
+                </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <TextBlock Text="Category ID:" Margin="0,0,10,0"/>
-                <TextBox Name="categoryIdTextBox" Text="{Binding Product.IdCategory, Mode=TwoWay}" Width="50"/>
-            </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Category ID:" Margin="0,0,10,0"/>
+                    <TextBox Name="categoryIdTextBox" Text="{Binding Product.IdCategory, Mode=TwoWay}" Width="50"/>
+                </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <TextBlock Text="Supplier ID:" Margin="0,0,10,0"/>
-                <TextBox Name="supplierIdTextBox" Text="{Binding Product.IdSupplier, Mode=TwoWay}" Width="50"/>
-            </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Supplier ID:" Margin="0,0,10,0"/>
+                    <TextBox Name="supplierIdTextBox" Text="{Binding Product.IdSupplier, Mode=TwoWay}" Width="50"/>
+                </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <Button Content="Create" Command="{Binding CreateDataCommand}" Margin="0,0,10,0"/>
-                <Button Content="Read" Command="{Binding GetDataCommand}" Margin="0,0,10,0"/>
-                <Button Content="Update" Command="{Binding UpdateDataCommand}" Margin="0,0,10,0"/>
-                <Button Content="Delete" Command="{Binding DeleteDataCommand}"/>
-            </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <Button Content="Create" Command="{Binding CreateDataCommand}" Margin="0,0,10,0"/>
+                    <Button Content="Read" Command="{Binding GetDataCommand}" Margin="0,0,10,0"/>
+                    <Button Content="Update" Command="{Binding UpdateDataCommand}" Margin="0,0,10,0"/>
+                    <Button Content="Delete" Command="{Binding DeleteDataCommand}"/>
+                </StackPanel>
 
-            <StackPanel  Grid.Row="0" Grid.Column="0" Margin="10">
-                <Border BorderBrush="blue" BorderThickness="3" CornerRadius="8">
-                    <StackPanel DataContext="{Binding Product}">
-                        <Label Content="Get"/>
-                        <Label Content="{Binding Id}"/>
-                        <Label Content="{Binding ProductName}"/>
-                        <Label Content="{Binding Description}"/>
-                        <Label Content="{Binding Price}"/>
-                        <Label Content="{Binding Count}"/>
-                        <Label Content="{Binding Article}"/>
-                        <Label Content="{Binding IdCategory}"/>
-                        <Label Content="{Binding IdSupplier}"/>
-                    </StackPanel>
-                </Border>
+                <StackPanel  Grid.Row="0" Grid.Column="0" Margin="10">
+                    <Border BorderBrush="blue" BorderThickness="3" CornerRadius="8">
+                        <StackPanel DataContext="{Binding Product}">
+                            <Label Content="Get"/>
+                            <Label Content="{Binding Id}"/>
+                            <Label Content="{Binding ProductName}"/>
+                            <Label Content="{Binding Description}"/>
+                            <Label Content="{Binding Price}"/>
+                            <Label Content="{Binding Count}"/>
+                            <Label Content="{Binding Article}"/>
+                            <Label Content="{Binding IdCategory}"/>
+                            <Label Content="{Binding IdSupplier}"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
             </StackPanel>
+        </Grid>
+        <StackPanel>
+            <Button Content="GetProductLis" Command="{Binding GetProductLisCommand}"/>
+            
+            <ListView ItemsSource="{Binding ProductList}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Id"          DisplayMemberBinding="{Binding Id}"/>
+                        <GridViewColumn Header="ProductName" DisplayMemberBinding="{Binding ProductName}"/>
+                        <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}"/>
+                        <GridViewColumn Header="Price"       DisplayMemberBinding="{Binding Price}"/>
+                        <GridViewColumn Header="Count"       DisplayMemberBinding="{Binding Count}"/>
+                        <GridViewColumn Header="Article"     DisplayMemberBinding="{Binding Article}"/>
+                        <GridViewColumn Header="IdCategory"  DisplayMemberBinding="{Binding IdCategory}"/>
+                        <GridViewColumn Header="IdSupplier"  DisplayMemberBinding="{Binding IdSupplier}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
         </StackPanel>
-    </Grid>
+    </StackPanel>
 </Page>
